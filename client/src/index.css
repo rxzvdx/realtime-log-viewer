@@ -4,7 +4,7 @@
 }
 * { box-sizing: border-box; }
 
-/* Dark mode background + soft white text */
+/* Dark mode background */
 body { 
   margin: 0; 
   background: #121212;          
