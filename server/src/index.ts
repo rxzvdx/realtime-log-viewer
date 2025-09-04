@@ -6,7 +6,10 @@
 
 import { WebSocketServer, WebSocket } from 'ws'
 
+// config port
 const PORT = Number(process.env.PORT || 8080)
+
+// WS server listening on port above
 const wss = new WebSocketServer({ port: PORT })
 
 // ATC lingo by severity
@@ -32,6 +35,7 @@ const TABLE = {
 const LEVELS = ['INFO', 'WARN', 'ERROR'] as const
 function rand<T>(arr: readonly T[]) { return arr[Math.floor(Math.random() * arr.length)] }
 
+// log creation logic
 function makeLog() {
     const level = rand(LEVELS)
     const message = rand(TABLE[level])

@@ -1,3 +1,5 @@
+// Vite config for the React client. Adds an alias '@' → 'src' and 
+//      exposes a WS URL at build time (default ws://localhost:8080).
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'

@@ -1,4 +1,4 @@
-# build
+# build, compile TypeScript to JS in /dist
 FROM node:20-bullseye AS base
 WORKDIR /app
 COPY package.json package-lock.json* ./
@@ -7,7 +7,7 @@ COPY src ./src
 COPY tsconfig.json ./tsconfig.json
 RUN npm run build
 
-# run
+# run, smaller image with only runtime deps and built files 
 FROM node:20-bullseye-slim
 WORKDIR /app
 ENV NODE_ENV=production

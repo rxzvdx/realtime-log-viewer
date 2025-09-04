@@ -1,9 +1,9 @@
+// Main UI: connects to the WS server, rendes live log lines
+// and provides pause/resume and clear controls w/ auto scoller
 import { useEffect, useRef, useState } from 'react'
 import type { LogLine, LogLevel } from './types'
 
-
 const WS_URL: string = (globalThis as any).__WS_URL__ || 'ws://localhost:8080'
-
 
 export default function App() {
     const [lines, setLines] = useState<LogLine[]>([])
@@ -11,7 +11,6 @@ export default function App() {
     const [paused, setPaused] = useState(false)
     const boxRef = useRef<HTMLDivElement>(null)
     const shouldStickRef = useRef(true)
-
 
     // stick-to-bottom logic
     useEffect(() => {
@@ -25,7 +24,6 @@ export default function App() {
         return () => el.removeEventListener('scroll', onScroll)
     }, [])
 
-
     // autoscroll when new lines arrive
     useEffect(() => {
         const el = boxRef.current
@@ -35,11 +33,9 @@ export default function App() {
         }
     }, [lines])
 
-
     // websocket connection
     useEffect(() => {
         const ws = new WebSocket(WS_URL)
-
 
         ws.addEventListener('open', () => setConnected(true))
         ws.addEventListener('close', () => setConnected(false))
@@ -55,12 +51,10 @@ export default function App() {
         return () => ws.close()
     }, [paused])
 
-
+    // UI handlers
     const clear = () => setLines([])
     const pauseResume = () => setPaused((p) => !p)
-
-
-    const color = (lvl: LogLevel) => lvl
+    const levelClass = (lvl: LogLevel) => lvl
 
 
     return (
@@ -77,7 +71,7 @@ export default function App() {
 
             <div ref={boxRef} className="logbox">
                 {lines.map((l) => (
-                    <div key={l.seq} className={`line ${color(l.level)}`}>
+                    <div key={l.seq} className={`line ${levelClass(l.level)}`}>
                         <span className="badge">[{l.level}]</span>
                         <span className="small">{new Date(l.timestamp).toLocaleTimeString()} · </span>
                         <span>{l.message}</span>

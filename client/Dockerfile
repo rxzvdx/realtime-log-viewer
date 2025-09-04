@@ -1,4 +1,4 @@
-# build
+# build, bundle React app w/ Vite
 FROM node:20-bullseye AS build
 WORKDIR /app
 ARG VITE_WS_URL=ws://localhost:8080
@@ -8,7 +8,7 @@ RUN npm ci || npm i
 COPY . .
 RUN npm run build
 
-# run 
+# run, serve static assets
 FROM node:20-bullseye-slim
 WORKDIR /app
 RUN npm i -g serve@14
