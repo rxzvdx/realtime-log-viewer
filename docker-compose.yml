@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  server:                                 # backend service
+    build: ./server                       # docker file in server dir
+    image: rtlv-server:latest             # name for built server image
+    ports:
+    - "8080:8080"                         # map host port 8080, container port 8080
+  
+  client:                                 # front end service
+    build:  
+      context: ./client
+      args:
+        VITE_WS_URL: ws://localhost:8080
+      image: rtlv-client:latest
+      ports: 
+        - "4173:4173"
+      depends_on:
+        -server
