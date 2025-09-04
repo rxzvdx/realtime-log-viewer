@@ -1,24 +1,80 @@
 /* Base layout + theming for log viewer */
-:root { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial; }
+:root { 
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial; 
+}
 * { box-sizing: border-box; }
-body { margin:0; background:#0b1220; color:#e6eafd; }
+
+/* Dark mode background + soft white text */
+body { 
+  margin: 0; 
+  background: #121212;          
+  color: #f8f9fa;               
+}
 
 /* Page container */
-.container { max-width: 960px; margin:0 auto; padding:24px; }
+.container { 
+  max-width: 960px; 
+  margin: 0 auto; 
+  padding: 24px; 
+}
 
-/* Controls */
-.toolbar { display:flex; gap:10px; align-items:center; margin-bottom:12px; }
-button { padding:8px 12px; border:1px solid #2b3a5e; border-radius:10px; background:#172554; color:#e6eafd; cursor:pointer; }
-button:disabled { opacity:.6; cursor:not-allowed; }
+/* Controls: dark indigo buttons w/ teal hover */
+.toolbar { 
+  display: flex; 
+  gap: 10px; 
+  align-items: center; 
+  margin-bottom: 12px; 
+}
 
-/* Log viewport */
-.logbox { background:#0f172a; border:1px solid #1f2a44; border-radius:12px; padding:12px; height:60vh; overflow:auto; }
-.line { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; padding:4px 6px; border-radius:6px; margin-bottom:4px; }
+button { 
+  padding: 8px 12px; 
+  border: 1px solid #1b9aaa;     
+  border-radius: 10px; 
+  background: #1f4068;           
+  color: #f8f9fa;               
+  cursor: pointer; 
+}
+
+button:hover { 
+  background: #1b9aaa;           
+  color: #121212;                
+}
+
+button:disabled { 
+  opacity: .6; 
+  cursor: not-allowed; 
+}
+
+/* Log viewport: dark container w/ border */
+.logbox { 
+  background: #1a1a1a;           
+  border: 1px solid #2c2c2c;     
+  border-radius: 12px; 
+  padding: 12px; 
+  height: 60vh; 
+  overflow: auto; 
+}
+
+/* Each log line: mono font, small padding, rounded corners */
+.line { 
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+  padding: 4px 6px; 
+  border-radius: 6px; 
+  margin-bottom: 4px; 
+}
 
 /* Level colors */
-.INFO { background: rgba(56,189,248,.12); }
-.WARN { background: rgba(250,204,21,.12); }
-.ERROR{ background: rgba(248,113,113,.12); }
+.INFO  { background: rgba(76, 175, 80, 0.15);   } /* Green for info */
+.WARN  { background: rgba(255, 152, 0, 0.15);   } /* Orange for warnings */
+.ERROR { background: rgba(244, 67, 54, 0.15);   } /* Red for errors */
 
-.small { opacity:.75; font-size:.85rem; }
-.badge { display:inline-block; font-weight:600; margin-right:8px; }
+.small { 
+  opacity: .75; 
+  font-size: .85rem; 
+}
+
+.badge { 
+  display: inline-block; 
+  font-weight: 600; 
+  margin-right: 8px; 
+}
