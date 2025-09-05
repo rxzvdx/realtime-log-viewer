@@ -60,7 +60,7 @@ export default function App() {
     return (
         <div className="container">
             <h1>Real-Time Log Viewer</h1>
-            <p className="small">WebSocket: {connected ? 'Connected' : 'Disconnected'} · Stick to bottom when at end · ATC-themed logs</p>
+            <p className="small">WebSocket: {connected ? 'Connected' : 'Disconnected'}</p>
 
 
             <div className="toolbar">
